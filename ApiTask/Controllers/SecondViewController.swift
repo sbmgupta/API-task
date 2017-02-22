@@ -9,29 +9,13 @@ class SecondViewController: UIViewController,UITextFieldDelegate {
    var printMessage=""
     
     @IBOutlet weak var tfName: SkyFloatingLabelTextField!
-    
-    
     @IBOutlet weak var tfEmail: SkyFloatingLabelTextField!
-    
-    
     @IBOutlet weak var tfPassword: SkyFloatingLabelTextField!
-    
-    
     @IBOutlet weak var tfPhone: SkyFloatingLabelTextField!
-    
-    
     @IBOutlet weak var tfCountry: SkyFloatingLabelTextField!
-    
-    
     @IBOutlet weak var tfCity: SkyFloatingLabelTextField!
-    
-    
     @IBOutlet weak var tfAddress: SkyFloatingLabelTextField!
-    
-    
     @IBOutlet weak var btnNext: UIButton!
-    
-    
     @IBOutlet weak var btnBack: UIButton!
     
     override func viewDidLoad()
@@ -110,7 +94,8 @@ class SecondViewController: UIViewController,UITextFieldDelegate {
             ValidationAlertViewController.doAlert(messageReceived:printMessage, obj:self)
         }
         else
-        {let param : [String : Any] = ["username": tfName.text ?? "",
+        {
+            let param : [String : Any] = ["username": tfName.text ?? "",
                                        "email" : tfEmail.text ?? "",
                                        "password" : tfPassword.text ?? "",
                                        "phone" : tfPhone.text ?? "",
@@ -119,18 +104,16 @@ class SecondViewController: UIViewController,UITextFieldDelegate {
                                        "address" : tfAddress.text ?? "",
                                        "flag" : 1,
                                        "birthday" : "01/01/1996",
-//                                       "country_code" : "91",
-//                                       "postal_code" : "134109",
-//                                       "country_iso3" : "INDIA",
+                                       //  "country_code" : "91",
+                                       //  "postal_code" : "134109",
+                                       //  "country_iso3" : "INDIA",
                                        "state" : "CHD"]
             ApiHandler.fetchData(urlStr: "signup", parameters: param) { (jsonData) in
                 let userModel = Mapper<UserLoginModel>().map(JSONObject : jsonData)
                 self.printMessage="Success"
                 ValidationAlertViewController.doAlert(messageReceived:self.printMessage, obj:self)
-        }
+              }
 
-    }
-
-
-  }
+         }
+     }
 }
